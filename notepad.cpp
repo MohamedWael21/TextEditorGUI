@@ -37,8 +37,8 @@ void Notepad::on_actionOpen_triggered()
     // file object
     QFile file(fileName);
 
-    // make current file with the new choosen file
-    currentFile = fileName;
+    // get file name without absolute path
+    currentFile = QFileInfo(fileName).fileName();
 
     // try open file in read mode as text file
     if(!file.open(QIODevice::ReadOnly | QFile::Text)){
@@ -81,7 +81,7 @@ void Notepad::on_actionSave_As_triggered()
         return;
     }
     // update file variable
-    currentFile = fileName;
+    currentFile = QFileInfo(fileName).fileName();
     // set window title
     setWindowTitle(currentFile);
 
